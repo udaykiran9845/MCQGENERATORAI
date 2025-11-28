@@ -48,9 +48,17 @@ class PDFExporter:
             option_labels = ['A', 'B', 'C', 'D']
             for i, option in enumerate(mcq['options']):
                 label = option_labels[i]
-                marker = '✓' if option['is_correct'] else ' '
-                option_text = f"{marker} {label}) {option['text']}"
+                # Use ASCII characters instead of Unicode checkmark
+                if option['is_correct']:
+                    option_text = f"[CORRECT] {label}) {option['text']}"
+                    pdf.set_text_color(0, 128, 0)  # Green for correct answer
+                else:
+                    option_text = f"{label}) {option['text']}"
+                    pdf.set_text_color(0, 0, 0)  # Black for wrong answers
                 pdf.cell(0, 7, option_text, ln=True)
+            
+            # Reset text color
+            pdf.set_text_color(0, 0, 0)
             
             pdf.ln(3)
             
