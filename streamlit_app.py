@@ -54,7 +54,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown('<h1 class="main-header">🧠 AI MCQ Generator</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="main-header"> AI MCQ Generator</h1>', unsafe_allow_html=True)
 st.markdown('<p style="text-align: center; font-size: 1.2rem; color: #666;">Generate multiple-choice questions from your documents using Google Gemini AI</p>', unsafe_allow_html=True)
 
 # Sidebar
@@ -64,18 +64,18 @@ with st.sidebar:
     difficulty = st.selectbox("Difficulty Level", ["easy", "medium", "hard"], index=1)
     
     st.markdown("---")
-    st.markdown("### 📋 Supported Formats")
+    st.markdown("### Supported Formats")
     st.markdown("- PDF (.pdf)")
     st.markdown("- Word Document (.docx)")
     st.markdown("- Text File (.txt)")
     
     st.markdown("---")
-    st.markdown("### ℹ️ About")
+    st.markdown("###  About")
     st.markdown("Upload a document and let AI generate high-quality multiple-choice questions with explanations.")
 
 # Main content
 uploaded_file = st.file_uploader(
-    "📄 Upload Document",
+    " Upload Document",
     type=['pdf', 'docx', 'txt'],
     help="Upload a PDF, DOCX, or TXT file to generate MCQs"
 )
@@ -92,9 +92,9 @@ if uploaded_file is not None:
         st.metric("Questions", num_questions)
     
     # Generate button
-    if st.button("🚀 Generate MCQs", type="primary", use_container_width=True):
+    if st.button(" Generate MCQs", type="primary", use_container_width=True):
         try:
-            with st.spinner("🔄 Processing document and generating MCQs... This may take a moment."):
+            with st.spinner(" Processing document and generating MCQs... This may take a moment."):
                 # Save uploaded file temporarily
                 with tempfile.NamedTemporaryFile(delete=False, suffix=f".{uploaded_file.name.split('.')[-1]}") as tmp_file:
                     tmp_file.write(uploaded_file.getvalue())
@@ -115,7 +115,7 @@ if uploaded_file is not None:
                         # Store in session state
                         st.session_state['mcqs'] = mcqs
                         st.session_state['file_name'] = uploaded_file.name
-                        st.success(f"✅ Successfully generated {len(mcqs)} questions!")
+                        st.success(f"Successfully generated {len(mcqs)} questions!")
                         
                 finally:
                     # Clean up temp file
@@ -129,12 +129,12 @@ if uploaded_file is not None:
 # Display generated MCQs
 if 'mcqs' in st.session_state and st.session_state['mcqs']:
     st.markdown("---")
-    st.header("📝 Generated Questions")
+    st.header(" Generated Questions")
     
     # Export button
     col1, col2 = st.columns([1, 4])
     with col1:
-        if st.button("📥 Export PDF", use_container_width=True):
+        if st.button(" Export PDF", use_container_width=True):
             try:
                 exporter = PDFExporter()
                 pdf_path = exporter.export_to_pdf(st.session_state['mcqs'], "Generated MCQs")
@@ -142,7 +142,7 @@ if 'mcqs' in st.session_state and st.session_state['mcqs']:
                 with open(pdf_path, 'rb') as pdf_file:
                     pdf_bytes = pdf_file.read()
                     st.download_button(
-                        label="⬇️ Download PDF",
+                        label=" Download PDF",
                         data=pdf_bytes,
                         file_name=f"MCQs_{st.session_state['file_name'].split('.')[0]}.pdf",
                         mime="application/pdf",
@@ -156,7 +156,7 @@ if 'mcqs' in st.session_state and st.session_state['mcqs']:
                 st.error(f"Export failed: {str(e)}")
     
     with col2:
-        if st.button("🔄 Generate New", use_container_width=True):
+        if st.button(" Generate New", use_container_width=True):
             if 'mcqs' in st.session_state:
                 del st.session_state['mcqs']
             st.rerun()
@@ -186,7 +186,7 @@ if 'mcqs' in st.session_state and st.session_state['mcqs']:
             
             if mcq.get('explanation'):
                 st.markdown("<br>", unsafe_allow_html=True)
-                st.info(f"💡 **Explanation:** {mcq['explanation']}")
+                st.info(f" **Explanation:** {mcq['explanation']}")
             
             st.markdown('</div>', unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
@@ -199,4 +199,5 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
 
