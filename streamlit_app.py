@@ -21,37 +21,28 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
     <style>
-    .main-header {
-        font-size: 3rem;
-        font-weight: bold;
-        text-align: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 2rem;
-    }
     .mcq-card {
-        background-color: #f8f9fa;
+        background-color: #1e1e1e !important;
+        color: white !important;
         padding: 1.5rem;
         border-radius: 10px;
         border-left: 4px solid #667eea;
         margin-bottom: 1.5rem;
     }
+    .mcq-card * {
+        color: white !important;
+    }
     .correct-option {
-        background-color: #d4edda;
-        padding: 0.5rem;
-        border-radius: 5px;
-        border-left: 3px solid #28a745;
-        margin: 0.5rem 0;
+        background-color: #314e31 !important;
+        color: white !important;
     }
     .wrong-option {
-        background-color: #ffffff;
-        padding: 0.5rem;
-        border-radius: 5px;
-        margin: 0.5rem 0;
+        background-color: #2a2a2a !important;
+        color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
+
 
 # Header
 st.markdown('<h1 class="main-header"> AI MCQ Generator</h1>', unsafe_allow_html=True)
@@ -199,5 +190,6 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
 
 
